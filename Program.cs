@@ -5,7 +5,7 @@
         Console.WriteLine("Введите два положительных числа: M и N.");
         int m = InputInt("Введите M: ");
         int n = InputInt("Введите N: ");
-        Console.WriteLine($"A({m}, {n}) = {Akkerman(m, n)}");
+        Console.WriteLine($"A({m}, {n}) = {Number(m, n)}");
 
         int InputInt(string output)
         {
@@ -13,14 +13,14 @@
             return int.Parse(Console.ReadLine());
         }
 
-        int Akkerman(int m, int n)
+        int Number(int m, int n)
         {
             if (m == 0)
                 return n + 1;
             if (m > 0 && n == 0)
-                return Akkerman(m - 1, 1);
+                return Number(m - 1, 1);
             else
-                return Akkerman(m - 1, Akkerman(m, n - 1));
+                return Number(m - 1, Number(m, n - 1));
         }
     }
 
@@ -48,20 +48,20 @@
 
     void Zadacha64()
     {
-        Console.WriteLine("Введите начальное число M:");
-        int numberM = int.Parse(Console.ReadLine());
+        Console.Write("Введите число M: ");
+        int m = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Введите число N: ");
+        int n = Convert.ToInt32(Console.ReadLine());
 
-        Console.WriteLine("Введите натуральное число больше M:");
-        int number = int.Parse(Console.ReadLine());
-
-        void NumberCounter (int number)
+        void dz64(int n, int m)
         {
-            if (number < numberM) Console.Write($"{number} не натуральное число");
-            if (number % 3 == 0) return;
-            Console.Write( number);
-            NumberCounter (number - 1);
+            m++;
+            if(m % 3 == 0)
+                Console.Write(m + ", ");
+            if(m >= n)
+                return;
+            dz64(n, m);
         }
-
-        NumberCounter(number);
+        dz64(n, m);
     }
 }
